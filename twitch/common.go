@@ -122,7 +122,7 @@ type ListOptions struct {
 	Period     string `url:"period,omitempty"`
 	Limit      int    `url:"limit,omitempty"`
 	Offset     int    `url:"offset,omitempty"`
-	Cursor     int    `url:"cursor,omitempty"`
+	Cursor     string `url:"cursor,omitempty"`
 	Embeddable *bool  `url:"embeddable,omitempty"`
 	Hls        *bool  `url:"hls,omitempty"`
 	Live       *bool  `url:"live,omitempty"`
