@@ -125,4 +125,5 @@ type ListOptions struct {
 	Embeddable *bool  `url:"embeddable,omitempty"`
 	Hls        *bool  `url:"hls,omitempty"`
 	Live       *bool  `url:"live,omitempty"`
+	Cache      int64  `url:"_,omitempty"`
 }

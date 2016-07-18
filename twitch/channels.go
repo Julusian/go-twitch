@@ -5,6 +5,8 @@ package twitch
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/google/go-querystring/query"
 )
 
@@ -28,7 +30,8 @@ type FollowsS struct {
 }
 
 type FollowS struct {
-	User UserS `json:"user,omitempty"`
+	User      UserS     `json:"user,omitempty"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
 }
 
 type SubsS struct {
