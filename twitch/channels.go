@@ -27,6 +27,7 @@ type FollowsS struct {
 	Follows []FollowS `json:"follows,omitempty"`
 	Total   int       `json:"_total,omitempty"`
 	Links   LinksS    `json:"_links,omitempty"`
+	Cursor  int       `json:"cursor,omitempty"`
 }
 
 type FollowS struct {
