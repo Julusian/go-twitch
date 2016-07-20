@@ -1,5 +1,7 @@
 package twitch
 
+import "time"
+
 // Channel object
 type ChannelS struct {
 	Name                         string        `json:"name,omitempty"`
@@ -47,16 +49,16 @@ type TeamS struct {
 
 // Stream oject
 type StreamS struct {
-	Id          int      `json:"_id,omitempty"`
-	Game        string   `json:"game,omitempty"`
-	Name        string   `json:"name,omitempty"`
-	CreatedAt   string   `json:"created_at,omitempty"`
-	Preview     string   `json:"preview,omitempty"`
-	Viewers     int      `json:"viewers,omitempty"`
-	Broadcaster string   `json:"broadcaster,omitempty"`
-	Geo         string   `json:"geo,omitempty"`
-	Channel     ChannelS `json:"channel,omitempty"`
-	Status      string   `json:"status,omitempty"`
+	Id          int       `json:"_id,omitempty"`
+	Game        string    `json:"game,omitempty"`
+	Name        string    `json:"name,omitempty"`
+	CreatedAt   time.Time `json:"created_at,omitempty"`
+	Preview     string    `json:"preview,omitempty"`
+	Viewers     int       `json:"viewers,omitempty"`
+	Broadcaster string    `json:"broadcaster,omitempty"`
+	Geo         string    `json:"geo,omitempty"`
+	Channel     ChannelS  `json:"channel,omitempty"`
+	Status      string    `json:"status,omitempty"`
 }
 
 // User object

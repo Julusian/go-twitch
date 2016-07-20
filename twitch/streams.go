@@ -7,8 +7,8 @@ import "github.com/google/go-querystring/query"
 
 // used with GET /streams/:channel/
 type SChannelS struct {
-	Stream StreamS `json:"stream,omitempty"`
-	Links  LinksS  `json:"_links,omitempty"`
+	Stream *StreamS `json:"stream,omitempty"`
+	Links  LinksS   `json:"_links,omitempty"`
 }
 
 // used with GET /streams
