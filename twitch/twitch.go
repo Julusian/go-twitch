@@ -3,6 +3,7 @@ package twitch
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -11,9 +12,10 @@ import (
 const rootURL = "https://api.twitch.tv/kraken/"
 
 type Client struct {
-	client   *http.Client
-	BaseURL  *url.URL
-	ClientID string
+	client     *http.Client
+	BaseURL    *url.URL
+	ClientID   string
+	OAuthToken string
 
 	// Twitch api methods
 	Channels *ChannelsMethod
@@ -66,8 +68,11 @@ func (c *Client) Get(path string, r interface{}) (*http.Response, error) {
 
 	if len(c.ClientID) != 0 {
 		req.Header.Add("Client-ID", c.ClientID)
-
 	}
+	if len(c.OAuthToken) != 0 {
+		req.Header.Add("Authorization", fmt.Sprintf("OAuth %s", c.OAuthToken))
+	}
+
 	resp, err := c.client.Do(req)
 
 	if err != nil {
