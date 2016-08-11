@@ -2,6 +2,7 @@ package twitch
 
 import (
 	"fmt"
+
 	"github.com/google/go-querystring/query"
 )
 
@@ -36,14 +37,6 @@ type UsersMethod struct {
 
 // User returns a user object.
 func (u *UsersMethod) User(user string) (*UserS, error) {
-	rel := "users/" + user
-
-	usr := new(UserS)
-	_, err := u.client.Get(rel, usr)
-	return usr, err
-}
-
-func (u *UsersMethod) channel(user string) (*UserS, error) {
 	rel := "user" // get authenticated user
 	if user != "" {
 		rel = "users/" + user
