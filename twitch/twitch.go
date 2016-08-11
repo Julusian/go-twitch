@@ -3,19 +3,17 @@ package twitch
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 	"net/url"
 	"strconv"
-	"strings"
 )
 
 const rootURL = "https://api.twitch.tv/kraken/"
 
 type Client struct {
-	client     *http.Client
-	BaseURL    *url.URL
-	OAuthToken string
+	client   *http.Client
+	BaseURL  *url.URL
+	ClientID string
 
 	// Twitch api methods
 	Channels *ChannelsMethod
@@ -30,13 +28,10 @@ type Client struct {
 }
 
 // Returns a new twitch client used to communicate with the API.
-func NewClient(httpClient *http.Client, oauthToken string) *Client {
+func NewClient(httpClient *http.Client, clientId string) *Client {
 	baseURL, _ := url.Parse(rootURL)
 
-	// ensure doesnt start with oauth:
-	oauthToken = strings.TrimPrefix(oauthToken, "oauth:")
-
-	c := &Client{client: httpClient, BaseURL: baseURL, OAuthToken: oauthToken}
+	c := &Client{client: httpClient, BaseURL: baseURL, ClientID: clientId}
 	c.Channels = &ChannelsMethod{client: c}
 	c.Chat = &ChatMethod{client: c}
 	c.Games = &GamesMethod{client: c}
@@ -67,10 +62,10 @@ func (c *Client) Get(path string, r interface{}) (*http.Response, error) {
 		return nil, err
 
 	}
-	req.Header.Add("Accept", "application/vnd.twitchtv.v2+json")
+	req.Header.Add("Accept", "application/vnd.twitchtv.v3+json")
 
-	if len(c.OAuthToken) != 0 {
-		req.Header.Add("Authorization", fmt.Sprintf("OAuth %s", c.OAuthToken))
+	if len(c.ClientID) != 0 {
+		req.Header.Add("Client-ID", c.ClientID)
 
 	}
 	resp, err := c.client.Do(req)
