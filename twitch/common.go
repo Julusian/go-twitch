@@ -126,7 +126,8 @@ type ListOptions struct {
 	Offset     int    `url:"offset,omitempty"`
 	Cursor     string `url:"cursor,omitempty"`
 	Embeddable *bool  `url:"embeddable,omitempty"`
-	Hls        *bool  `url:"hls,omitempty"`
+	Hls        bool   `url:"hls,omitempty"`
 	Live       *bool  `url:"live,omitempty"`
 	Cache      int64  `url:"_,omitempty"`
+	Broadcasts bool   `url:"broadcasts,omitempty"`
 }
