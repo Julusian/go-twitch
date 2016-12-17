@@ -48,10 +48,10 @@ func (this TwitchID) MarshalJSON() ([]byte, error) {
 	return []byte(str), nil
 }
 
-func (this TwitchID) UnmarshalJSON(b []byte) error {
+func (this *TwitchID) UnmarshalJSON(b []byte) error {
 	var integer uint
 	err := json.Unmarshal(b, &integer)
-	if err != nil {
+	if err == nil {
 		// Treat it as an int!
 
 		this.Integer = integer
@@ -61,7 +61,7 @@ func (this TwitchID) UnmarshalJSON(b []byte) error {
 
 	var str string
 	err = json.Unmarshal(b, &str)
-	if err != nil {
+	if err == nil {
 		if str == "" {
 			return nil
 		}
