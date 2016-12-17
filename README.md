@@ -3,6 +3,7 @@
 # Forked from [go-twitch](https://github.com/mrshankly/go-twitch)
 
 [![travis-ci status](https://api.travis-ci.org/julusian/go-twitch.png)](https://travis-ci.org/julusian/go-twitch)
+[![Coverage Status](https://coveralls.io/repos/github/Julusian/go-twitch/badge.svg?branch=master)](https://coveralls.io/github/Julusian/go-twitch?branch=master)
 
 Go library for accessing v5 of the [Twitch-API](https://dev.twitch.tv/docs/).
 
