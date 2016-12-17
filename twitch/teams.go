@@ -2,12 +2,12 @@ package twitch
 
 import "time"
 
-type TeamsS struct {
-	Teams []TeamS `json:"teams,omitempty"`
+type TeamsList struct {
+	Teams []Team `json:"teams,omitempty"`
 }
 
 // Team object
-type TeamS struct {
+type Team struct {
 	ID          int       `json:"_id,omitempty"`
 	Background  string    `json:"background,omitempty"`
 	Banner      string    `json:"banner,omitempty"`
@@ -17,5 +17,5 @@ type TeamS struct {
 	Logo        string    `json:"logo,omitempty"`
 	Name        string    `json:"name,omitempty"`
 	UpdatedAt   time.Time `json:"updated_at,omitempty"`
-	Users       []UserS   `json:"users,omitempty"`
+	Users       []User    `json:"users,omitempty"`
 }

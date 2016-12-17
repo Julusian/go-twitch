@@ -9,7 +9,7 @@ type TeamsMethod struct {
 	client *Client
 }
 
-func (t *TeamsMethod) List(opt *twitch.ListOptions) (*twitch.TeamsS, error) {
+func (t *TeamsMethod) List(opt *twitch.ListOptions) (*twitch.TeamsList, error) {
 	rel := "teams"
 	if opt != nil {
 		v, err := query.Values(opt)
@@ -19,15 +19,15 @@ func (t *TeamsMethod) List(opt *twitch.ListOptions) (*twitch.TeamsS, error) {
 		rel += "?" + v.Encode()
 	}
 
-	teams := new(twitch.TeamsS)
+	teams := new(twitch.TeamsList)
 	_, err := t.client.Get(rel, teams)
 	return teams, err
 }
 
-func (t *TeamsMethod) Team(name string) (*twitch.TeamS, error) {
+func (t *TeamsMethod) Team(name string) (*twitch.Team, error) {
 	rel := "teams/" + name
 
-	team := new(twitch. TeamS)
+	team := new(twitch.Team)
 	_, err := t.client.Get(rel, team)
 	return team, err
 }

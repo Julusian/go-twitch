@@ -6,10 +6,10 @@ type IngestsMethod struct {
 	client *Client
 }
 
-func (i *IngestsMethod) List() (*twitch.IngestsS, error) {
+func (i *IngestsMethod) List() (*twitch.IngestsList, error) {
 	rel := "ingests"
 
-	ingests := new(twitch.IngestsS)
+	ingests := new(twitch.IngestsList)
 	_, err := i.client.Get(rel, ingests)
 	return ingests, err
 }

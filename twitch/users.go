@@ -2,36 +2,36 @@ package twitch
 
 import "time"
 
-type BlocksS struct {
-	Total  int      `json:"_total,omitempty"`
-	Blocks []BlockS `json:"blocks,omitempty"`
+type UserBlocksList struct {
+	Total  int         `json:"_total,omitempty"`
+	Blocks []UserBlock `json:"blocks,omitempty"`
 }
 
-type BlockS struct {
+type UserBlock struct {
 	ID        int       `json:"_id,omitempty"`
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
-	User      UserS     `json:"user,omitempty"`
+	User      User      `json:"user,omitempty"`
 }
 
-type UFollowsS struct {
-	Total   int        `json:"_total,omitempty"`
-	Follows []UFollowS `json:"follows,omitempty"`
+type UserFollowsList struct {
+	Total   int          `json:"_total,omitempty"`
+	Follows []UserFollow `json:"follows,omitempty"`
 }
 
-type UFollowS struct {
-	CreatedAt     string   `json:"created_at,omitempty"`
-	Notifications bool     `json:"notifications,omitempty"`
-	Channel       ChannelS `json:"channel,omitempty"`
+type UserFollow struct {
+	CreatedAt     string  `json:"created_at,omitempty"`
+	Notifications bool    `json:"notifications,omitempty"`
+	Channel       Channel `json:"channel,omitempty"`
 }
 
-type USubS struct {
+type UserSubscription struct {
 	ID        string    `json:"_id,omitempty"`
-	Channel   ChannelS  `json:"channel,omitempty"`
+	Channel   Channel   `json:"channel,omitempty"`
 	CreatedAt time.Time `json:"created_at,omitempty"`
 }
 
 // User object
-type UserS struct {
+type User struct {
 	ID               int       `json:"_id,omitempty"`
 	Bio              string    `json:"bio,omitempty"`
 	CreatedAt        time.Time `json:"created_at,omitempty"`

@@ -13,7 +13,7 @@ type SearchMethod struct {
 	client *Client
 }
 
-func (s *SearchMethod) Streams(q string, opt *twitch.ListOptions) (*twitch.StreamsS, error) {
+func (s *SearchMethod) Streams(q string, opt *twitch.ListOptions) (*twitch.StreamsList, error) {
 	rel := "search/streams?query=" + url.QueryEscape(q)
 	if opt != nil {
 		v, err := query.Values(opt)
@@ -23,12 +23,12 @@ func (s *SearchMethod) Streams(q string, opt *twitch.ListOptions) (*twitch.Strea
 		rel += "&" + v.Encode()
 	}
 
-	search := new(twitch.StreamsS)
+	search := new(twitch.StreamsList)
 	_, err := s.client.Get(rel, search)
 	return search, err
 }
 
-func (s *SearchMethod) Games(q string, opt *twitch.ListOptions) (*twitch.SGamesS, error) {
+func (s *SearchMethod) Games(q string, opt *twitch.ListOptions) (*twitch.GamesSearch, error) {
 	rel := fmt.Sprintf("search/games?query=%s", url.QueryEscape(q))
 	if opt != nil {
 		v, err := query.Values(opt)
@@ -38,12 +38,12 @@ func (s *SearchMethod) Games(q string, opt *twitch.ListOptions) (*twitch.SGamesS
 		rel += "&" + v.Encode()
 	}
 
-	search := new(twitch.SGamesS)
+	search := new(twitch.GamesSearch)
 	_, err := s.client.Get(rel, search)
 	return search, err
 }
 
-func (s *SearchMethod) Channels(q string, opt *twitch.ListOptions) (*twitch.SChannelsS, error) {
+func (s *SearchMethod) Channels(q string, opt *twitch.ListOptions) (*twitch.ChannelsSearch, error) {
 	rel := fmt.Sprintf("search/channels?query=%s", url.QueryEscape(q))
 	if opt != nil {
 		v, err := query.Values(opt)
@@ -53,7 +53,7 @@ func (s *SearchMethod) Channels(q string, opt *twitch.ListOptions) (*twitch.SCha
 		rel += "&" + v.Encode()
 	}
 
-	search := new(twitch.SChannelsS)
+	search := new(twitch.ChannelsSearch)
 	_, err := s.client.Get(rel, search)
 	return search, err
 }

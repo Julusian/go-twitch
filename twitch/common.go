@@ -1,6 +1,6 @@
 package twitch
 
-type PreviewS struct {
+type PreviewImage struct {
 	Large    string `json:"large,omitempty"`
 	Medium   string `json:"medium,omitempty"`
 	Small    string `json:"small,omitempty"`

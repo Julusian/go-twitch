@@ -6,42 +6,42 @@ package twitch
 import "time"
 
 // used with GET /channels/:channel/videos
-type VideosS struct {
-	Total  int      `json:"_total,omitempty"`
-	Videos []VideoS `json:"videos,omitempty"`
+type ChannelVideosList struct {
+	Total  int     `json:"_total,omitempty"`
+	Videos []Video `json:"videos,omitempty"`
 }
 
 // used with GET /channels/:channel/editors
-type EditorsS struct {
-	Users []UserS `json:"users,omitempty"`
+type ChannelEditorsList struct {
+	Users []User `json:"users,omitempty"`
 }
 
 // used with GET /channels/:channel/follows
-type FollowsS struct {
-	Cursor  string    `json:"_cursor,omitempty"`
-	Total   int       `json:"_total,omitempty"`
-	Follows []FollowS `json:"follows,omitempty"`
+type ChannelFollowsList struct {
+	Cursor  string          `json:"_cursor,omitempty"`
+	Total   int             `json:"_total,omitempty"`
+	Follows []ChannelFollow `json:"follows,omitempty"`
 }
 
-type FollowS struct {
+type ChannelFollow struct {
 	CreatedAt     time.Time `json:"created_at,omitempty"`
 	Notifications bool      `json:"notifications,omitempty"`
-	User          UserS     `json:"user,omitempty"`
+	User          User      `json:"user,omitempty"`
 }
 
-type SubsS struct {
-	Total         int    `json:"_total,omitempty"`
-	Subscriptions []SubS `json:"subscriptions,omitempty"`
+type ChannelSubscriptionsList struct {
+	Total         int                   `json:"_total,omitempty"`
+	Subscriptions []ChannelSubscription `json:"subscriptions,omitempty"`
 }
 
-type SubS struct {
+type ChannelSubscription struct {
 	ID        string    `json:"_id,omitempty"`
 	CreatedAt time.Time `json:"created_at,omitempty"`
-	User      UserS     `json:"user,omitempty"`
+	User      User      `json:"user,omitempty"`
 }
 
 // Channel object
-type ChannelS struct {
+type Channel struct {
 	ID                           int       `json:"_id,omitempty"`
 	BroadcasterLanguage          string    `json:"broadcaster_language,omitempty"`
 	CreatedAt                    time.Time `json:"created_at,omitempty"`

@@ -1,10 +1,10 @@
 package twitch
 
-type SGamesS struct {
-	Games []GameS `json:"games,omitempty"`
+type GamesSearch struct {
+	Games []Game `json:"games,omitempty"`
 }
 
-type SChannelsS struct {
-	Total    int        `json:"_total,omitempty"`
-	Channels []ChannelS `json:"channels,omitempty"`
+type ChannelsSearch struct {
+	Total    int       `json:"_total,omitempty"`
+	Channels []Channel `json:"channels,omitempty"`
 }

@@ -2,17 +2,17 @@ package twitch
 
 import "time"
 
-type VVideosS struct {
-	Total  int      `json:"_total,omitempty"`
-	Videos []VideoS `json:"vods,omitempty"`
+type TopVideosList struct {
+	Total  int     `json:"_total,omitempty"`
+	Videos []Video `json:"vods,omitempty"`
 }
 
 // Video object
-type VideoS struct {
+type Video struct {
 	ID              string             `json:"_id,omitempty"`
 	BroadcastID     int                `json:"broadcast_id"`
 	BroadcastType   string             `json:"broadcast_type,omitempty"`
-	Channel         ChannelS           `json:"channel,omitempty"`
+	Channel         Channel            `json:"channel,omitempty"`
 	CreatedAt       time.Time          `json:"created_at,omitempty"`
 	Description     string             `json:"description,omitempty"`
 	DescriptionHTML string             `json:"description_html,omitempty"`
@@ -20,7 +20,7 @@ type VideoS struct {
 	Game            string             `json:"game,omitempty"`
 	Language        string             `json:"language,omitempty"`
 	Length          int                `json:"length,omitempty"`
-	Preview         PreviewS           `json:"preview,omitempty"`
+	Preview         PreviewImage       `json:"preview,omitempty"`
 	PublishedAt     time.Time          `json:"published_at,omitempty"`
 	Resolutions     map[string]string  `json:"resolutions,omitempty"`
 	Status          string             `json:"status,omitempty"`

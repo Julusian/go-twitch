@@ -11,7 +11,7 @@ type GamesMethod struct {
 
 // Returns a list of games objects sorted by number of current viewers, most
 // popular first.
-func (g *GamesMethod) Top(opt *twitch.ListOptions) (*twitch.TopsS, error) {
+func (g *GamesMethod) Top(opt *twitch.ListOptions) (*twitch.TopGamesList, error) {
 	rel := "games/top"
 	if opt != nil {
 		v, err := query.Values(opt)
@@ -21,7 +21,7 @@ func (g *GamesMethod) Top(opt *twitch.ListOptions) (*twitch.TopsS, error) {
 		rel += "?" + v.Encode()
 	}
 
-	games := new(twitch.TopsS)
+	games := new(twitch.TopGamesList)
 	_, err := g.client.Get(rel, games)
 	return games, err
 }
