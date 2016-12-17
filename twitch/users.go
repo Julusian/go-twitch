@@ -29,3 +29,21 @@ type USubS struct {
 	Channel   ChannelS  `json:"channel,omitempty"`
 	CreatedAt time.Time `json:"created_at,omitempty"`
 }
+
+// User object
+type UserS struct {
+	ID               int       `json:"_id,omitempty"`
+	Bio              string    `json:"bio,omitempty"`
+	CreatedAt        time.Time `json:"created_at,omitempty"`
+	DisplayName      string    `json:"display_name,omitempty"`
+	Email            string    `json:"email,omitempty"`          // Authenticated
+	EmailVerified    bool      `json:"email_verified,omitempty"` // Authenticated
+	Logo             string    `json:"logo,omitempty"`
+	Name             string    `json:"name,omitempty"`
+	Partnered        bool      `json:"partnered,omitempty"`         // Authenticated
+	TwitterConnected bool      `json:"twitter_connected,omitempty"` // Authenticated
+	Type             string    `json:"type,omitempty"`
+	UpdatedAt        time.Time `json:"updated_at,omitempty"`
+
+	// Notifications UserNotificataions `json:"notifications,omitempty"` // Authenticated
+}

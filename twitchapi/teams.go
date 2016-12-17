@@ -27,7 +27,7 @@ func (t *TeamsMethod) List(opt *twitch.ListOptions) (*twitch.TeamsS, error) {
 func (t *TeamsMethod) Team(name string) (*twitch.TeamS, error) {
 	rel := "teams/" + name
 
-	team := new(twitch.TeamS)
+	team := new(twitch. TeamS)
 	_, err := t.client.Get(rel, team)
 	return team, err
 }
