@@ -3,37 +3,38 @@
 
 package twitch
 
-import "github.com/google/go-querystring/query"
+import (
+	"fmt"
+
+	"github.com/google/go-querystring/query"
+)
 
 // used with GET /streams/:channel/
 type SChannelS struct {
 	Stream *StreamS `json:"stream,omitempty"`
-	Links  LinksS   `json:"_links,omitempty"`
 }
 
 // used with GET /streams
 type StreamsS struct {
 	Total   int       `json:"_total,omitempty"`
 	Streams []StreamS `json:"streams,omitempty"`
-	Links   LinksS    `json:"_links,omitempty"`
 }
 
 // used with GET /streams/featured
 type FeaturedS struct {
 	Featured []FStreamS `json:"featured,omitempty"`
-	Links    LinksS     `json:"_links,omitempty"`
 }
 
 // used with GET /streams/summary
 type SummaryS struct {
-	Viewers  int `json:"viewers,omitempty"`
 	Channels int `json:"channels,omitempty"`
+	Viewers  int `json:"viewers,omitempty"`
 }
 
 // used with GET /streams/followed
 type FollowedS struct {
+	Total   int       `json:"_total,omitempty"`
 	Streams []StreamS `json:"streams,omitempty"`
-	Links   LinksS    `json:"_links,omitempty"`
 }
 
 type StreamsMethod struct {
@@ -41,8 +42,8 @@ type StreamsMethod struct {
 }
 
 // Returns a stream object if live.
-func (s *StreamsMethod) Channel(name string) (*SChannelS, error) {
-	rel := "streams/" + name
+func (s *StreamsMethod) Channel(id uint) (*SChannelS, error) {
+	rel := fmt.Sprintf("streams/%d", id)
 
 	stream := new(SChannelS)
 	_, err := s.client.Get(rel, stream)

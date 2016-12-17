@@ -12,38 +12,37 @@ import (
 
 // used with GET /channels/:channel/videos
 type VideosS struct {
+	Total  int      `json:"_total,omitempty"`
 	Videos []VideoS `json:"videos,omitempty"`
-	Links  LinksS   `json:"_links,omitempty"`
 }
 
 // used with GET /channels/:channel/editors
 type EditorsS struct {
 	Users []UserS `json:"users,omitempty"`
-	Links LinksS  `json:"_links,omitempty"`
 }
 
 // used with GET /channels/:channel/follows
 type FollowsS struct {
-	Follows []FollowS `json:"follows,omitempty"`
-	Total   int       `json:"_total,omitempty"`
-	Links   LinksS    `json:"_links,omitempty"`
 	Cursor  string    `json:"_cursor,omitempty"`
+	Total   int       `json:"_total,omitempty"`
+	Follows []FollowS `json:"follows,omitempty"`
 }
 
 type FollowS struct {
-	User      UserS     `json:"user,omitempty"`
-	CreatedAt time.Time `json:"created_at,omitempty"`
+	CreatedAt     time.Time `json:"created_at,omitempty"`
+	Notifications bool      `json:"notifications,omitempty"`
+	User          UserS     `json:"user,omitempty"`
 }
 
 type SubsS struct {
 	Total         int    `json:"_total,omitempty"`
-	Links         LinksS `json:"_links,omitempty"`
 	Subscriptions []SubS `json:"subscriptions,omitempty"`
 }
 
 type SubS struct {
-	Id   string `json:"_id,omitempty"`
-	User UserS  `json:"user,omitempty"`
+	ID        string    `json:"_id,omitempty"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
+	User      UserS     `json:"user,omitempty"`
 }
 
 type ChannelsMethod struct {
@@ -52,10 +51,10 @@ type ChannelsMethod struct {
 
 // Returns a channel object. If `name` is an empty string, returns the channel
 // object of authenticated user.
-func (c *ChannelsMethod) Channel(name string) (*ChannelS, error) {
-	rel := "channel" // get authenticated channel
-	if name != "" {
-		rel = "channels/" + name
+func (c *ChannelsMethod) Channel(id uint) (*ChannelS, error) {
+	rel := "channels" // get authenticated channel
+	if id > 0 {
+		rel = fmt.Sprintf("channels/%d", id)
 	}
 
 	channel := new(ChannelS)
@@ -74,8 +73,8 @@ func (c *ChannelsMethod) editors(name string) (*EditorsS, error) {
 
 // Returns a list of videos ordered by time of creation, starting with the most
 // recent from channel `name`.
-func (c *ChannelsMethod) Videos(name string, opt *ListOptions) (*VideosS, error) {
-	rel := "channels/" + name + "/videos"
+func (c *ChannelsMethod) Videos(id uint, opt *ListOptions) (*VideosS, error) {
+	rel := fmt.Sprintf("channels/%d/videos", id)
 	if opt != nil {
 		v, err := query.Values(opt)
 		if err != nil {
@@ -90,8 +89,8 @@ func (c *ChannelsMethod) Videos(name string, opt *ListOptions) (*VideosS, error)
 }
 
 // Returns a list of users the channel `name` is following.
-func (c *ChannelsMethod) Follows(name string, opt *ListOptions) (*FollowsS, error) {
-	rel := "channels/" + name + "/follows"
+func (c *ChannelsMethod) Follows(id uint, opt *ListOptions) (*FollowsS, error) {
+	rel := fmt.Sprintf("channels/%d/follows", id)
 	if opt != nil {
 		v, err := query.Values(opt)
 		if err != nil {
@@ -105,8 +104,8 @@ func (c *ChannelsMethod) Follows(name string, opt *ListOptions) (*FollowsS, erro
 	return follow, err
 }
 
-func (c *ChannelsMethod) subscriptions(name string, opt *ListOptions) (*SubsS, error) {
-	rel := "channels/" + name + "/subscriptions"
+func (c *ChannelsMethod) subscriptions(id uint, opt *ListOptions) (*SubsS, error) {
+	rel := fmt.Sprintf("channels/%d/subscriptions", id)
 	if opt != nil {
 		v, err := query.Values(opt)
 		if err != nil {
@@ -120,8 +119,8 @@ func (c *ChannelsMethod) subscriptions(name string, opt *ListOptions) (*SubsS, e
 	return subs, err
 }
 
-func (c *ChannelsMethod) subscription(name string, user string) (*SubS, error) {
-	rel := fmt.Sprintf("channels/%s/subscriptions/%s", name, user)
+func (c *ChannelsMethod) subscription(id uint, user uint) (*SubS, error) {
+	rel := fmt.Sprintf("channels/%d/subscriptions/%d", id, user)
 
 	sub := new(SubS)
 	_, err := c.client.Get(rel, sub)

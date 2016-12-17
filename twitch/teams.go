@@ -4,7 +4,6 @@ import "github.com/google/go-querystring/query"
 
 type TeamsS struct {
 	Teams []TeamS `json:"teams,omitempty"`
-	Links LinksS  `json:"_links,omitempty"`
 }
 
 type TeamsMethod struct {

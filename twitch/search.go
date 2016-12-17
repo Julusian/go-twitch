@@ -8,27 +8,12 @@ import (
 )
 
 type SGamesS struct {
-	Games []SGameS `json:"games,omitempty"`
+	Games []GameS `json:"games,omitempty"`
 }
 
-type SGameS struct {
-	Box         PreviewS `json:"box,omitempty"`
-	Logo        PreviewS `json:"logo,omitempty"`
-	Images      ImagesS  `json:"images,omitempty"`
-	Popularity  int      `json:"popularity,omitempty"`
-	Name        string   `json:"name,omitempty"`
-	Id          int      `json:"_id,omitempty"`
-	GiantbombId int      `json:"giantbomb_id,omitempty"`
-}
-
-type ImagesS struct {
-	Thumb  string `json:"thumb,omitempty"`
-	Tiny   string `json:"tiny,omitempty"`
-	Small  string `json:"small,omitempty"`
-	Super  string `json:"super,omitempty"`
-	Medium string `json:"medium,omitempty"`
-	Icon   string `json:"icon,omitempty"`
-	Screen string `json:"screen,omitempty"`
+type SChannelsS struct {
+	Total    int        `json:"_total,omitempty"`
+	Channels []ChannelS `json:"channels,omitempty"`
 }
 
 type SearchMethod struct {
@@ -36,7 +21,7 @@ type SearchMethod struct {
 }
 
 func (s *SearchMethod) Streams(q string, opt *ListOptions) (*StreamsS, error) {
-	rel := "search/streams?q=" + url.QueryEscape(q)
+	rel := "search/streams?query=" + url.QueryEscape(q)
 	if opt != nil {
 		v, err := query.Values(opt)
 		if err != nil {
@@ -51,7 +36,7 @@ func (s *SearchMethod) Streams(q string, opt *ListOptions) (*StreamsS, error) {
 }
 
 func (s *SearchMethod) Games(q string, opt *ListOptions) (*SGamesS, error) {
-	rel := fmt.Sprintf("search/games?q=%s&type=suggest", url.QueryEscape(q))
+	rel := fmt.Sprintf("search/games?query=%s", url.QueryEscape(q))
 	if opt != nil {
 		v, err := query.Values(opt)
 		if err != nil {
@@ -61,6 +46,21 @@ func (s *SearchMethod) Games(q string, opt *ListOptions) (*SGamesS, error) {
 	}
 
 	search := new(SGamesS)
+	_, err := s.client.Get(rel, search)
+	return search, err
+}
+
+func (s *SearchMethod) Channels(q string, opt *ListOptions) (*SChannelsS, error) {
+	rel := fmt.Sprintf("search/channels?query=%s", url.QueryEscape(q))
+	if opt != nil {
+		v, err := query.Values(opt)
+		if err != nil {
+			return nil, err
+		}
+		rel += "&" + v.Encode()
+	}
+
+	search := new(SChannelsS)
 	_, err := s.client.Get(rel, search)
 	return search, err
 }

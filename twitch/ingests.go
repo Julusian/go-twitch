@@ -5,11 +5,11 @@ type IngestsS struct {
 }
 
 type IngestS struct {
-	Name         string  `json:"name,omitempty"`
-	Default      bool    `json:"default,omitempty"`
-	Id           int     `json:"_id,omitempty"`
-	UrlTemplate  string  `json:"url_template,omitempty"`
+	ID           int     `json:"_id,omitempty"`
 	Availability float64 `json:"availability,omitempty"`
+	Default      bool    `json:"default,omitempty"`
+	Name         string  `json:"name,omitempty"`
+	URLTemplate  string  `json:"url_template,omitempty"`
 }
 
 type IngestsMethod struct {

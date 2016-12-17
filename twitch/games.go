@@ -3,23 +3,23 @@ package twitch
 import "github.com/google/go-querystring/query"
 
 type TopsS struct {
-	Links LinksS `json:"_links,omitempty"`
 	Total int    `json:"_total,omitempty"`
 	Top   []TopS `json:"top,omitempty"`
 }
 
 type TopS struct {
-	Game     GameS `json:"game,omitempty"`
-	Viewers  int   `json:"viewers,omitempty"`
 	Channels int   `json:"channels,omitempty"`
+	Viewers  int   `json:"viewers,omitempty"`
+	Game     GameS `json:"game,omitempty"`
 }
 
 type GameS struct {
-	Name        string   `json:"name,omitempty"`
+	ID          int      `json:"_id,omitempty"`
 	Box         PreviewS `json:"box,omitempty"`
+	GiantbombID int      `json:"giantbomb_id,omitempty"`
 	Logo        PreviewS `json:"logo,omitempty"`
-	Id          int      `json:"_id,omitempty"`
-	GiantbombId int      `json:"giantbomb_id,omitempty"`
+	Name        string   `json:"name,omitempty"`
+	Popularity  int      `json:"popularity,omitempty"`
 }
 
 type GamesMethod struct {
