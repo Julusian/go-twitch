@@ -18,7 +18,7 @@ To install `go-twitch` run the command:
 $ go get github.com/julusian/go-twitch
 ```
 
-Full docs at (GoDocs)[https://godoc.org/github.com/julusian/go-twitch]
+Full docs at [GoDocs](https://godoc.org/github.com/julusian/go-twitch)
 
 Here's an example program that gets the top 10 twitch games:
 
