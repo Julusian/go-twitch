@@ -40,6 +40,12 @@ type UserSubscription struct {
 	CreatedAt time.Time `json:"created_at,omitempty"`
 }
 
+// UsersList is a list of users
+type UsersList struct {
+	Total int    `json:"_total,omitempty"`
+	Users []User `json:"users,omitempty"`
+}
+
 // User represents a user on twitch
 // https://dev.twitch.tv/docs/v5/reference/users/
 // https://dev.twitch.tv/docs/v5/reference/users/#get-user

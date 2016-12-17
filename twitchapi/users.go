@@ -15,10 +15,10 @@ type UsersMethod struct {
 }
 
 // Name returns a user object for a user specified by their login name
-func (u *UsersMethod) Name(name string) (*twitch.User, error) {
+func (u *UsersMethod) Name(name string) (*twitch.UsersList, error) {
 	rel := fmt.Sprintf("users?login=%s", name)
 
-	usr := new(twitch.User)
+	usr := new(twitch.UsersList)
 	_, err := u.client.Get(rel, usr)
 	return usr, err
 }
