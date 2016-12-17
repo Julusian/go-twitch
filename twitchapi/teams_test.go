@@ -1,15 +1,14 @@
-package twitch
+package twitchapi
 
 import (
 	"net/http"
 	"testing"
 )
 
-func TestChatChannel(t *testing.T) {
-
+func TestTeamsTeam(t *testing.T) {
 	tc := NewClient(&http.Client{})
 
-	_, err := tc.Chat.Channel("kraken_test_user")
+	_, err := tc.Teams.Team("testteam")
 
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
@@ -17,11 +16,15 @@ func TestChatChannel(t *testing.T) {
 
 }
 
-func TestChatEmoticons(t *testing.T) {
-
+func TestTeamsList(t *testing.T) {
 	tc := NewClient(&http.Client{})
 
-	_, err := tc.Chat.Emoticons()
+	opt := &ListOptions{
+		Limit:  1,
+		Offset: 0,
+	}
+
+	_, err := tc.Teams.List(opt)
 
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
