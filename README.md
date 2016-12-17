@@ -1,20 +1,24 @@
 # go-twitch
 
-[![travis-ci status](https://api.travis-ci.org/mrshankly/go-twitch.png)](https://travis-ci.org/mrshankly/go-twitch)
+# Forked from [go-twitch](https://github.com/mrshankly/go-twitch)
 
-Go library for accessing the [Twitch-API](https://github.com/justintv/Twitch-API).
+[![travis-ci status](https://api.travis-ci.org/julusian/go-twitch.png)](https://travis-ci.org/julusian/go-twitch)
+
+Go library for accessing v5 of the [Twitch-API](https://dev.twitch.tv/docs/).
 
 **This is still a work in progress.**
 
-Check the progress [here](https://github.com/mrshankly/go-twitch/issues/1).
+Currently only GET requests are implemented.
 
 ## Usage
 
 To install `go-twitch` run the command:
 
 ```bash
-$ go get github.com/mrshankly/go-twitch/twitch
+$ go get github.com/julusian/go-twitch
 ```
+
+Full docs at (GoDocs)[https://godoc.org/github.com/julusian/go-twitch]
 
 Here's an example program that gets the top 10 twitch games:
 
@@ -23,13 +27,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/mrshankly/go-twitch/twitch"
+	"github.com/julusian/go-twitch/twitch"
+	"github.com/julusian/go-twitch/twitchapi"
 	"log"
 	"net/http"
 )
 
 func main() {
-	client := twitch.NewClient(&http.Client{})
+	client := twitchapi.NewClient(&http.Client{}, os.Getenv("CLIENT_ID"))
 	opt := &twitch.ListOptions{
 		Limit:  10,
 		Offset: 0,
