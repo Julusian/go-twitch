@@ -2,12 +2,24 @@ package twitch
 
 import "time"
 
+// VideosList is a structure representing a list of videos
+// https://dev.twitch.tv/docs/v5/reference/channels/#get-channel-videos
+// https://dev.twitch.tv/docs/v5/reference/videos/#get-followed-videos
+type VideosList struct {
+	Total  int     `json:"_total,omitempty"`
+	Videos []Video `json:"videos,omitempty"`
+}
+
+// TopVideosList is a list of the top vods
+// https://dev.twitch.tv/docs/v5/reference/videos/#get-top-videos
 type TopVideosList struct {
 	Total  int     `json:"_total,omitempty"`
 	Videos []Video `json:"vods,omitempty"`
 }
 
-// Video object
+// Video is a structure representing a twitch video or vod
+// https://dev.twitch.tv/docs/v5/reference/videos/
+// https://dev.twitch.tv/docs/v5/reference/videos/#get-video
 type Video struct {
 	ID              string             `json:"_id,omitempty"`
 	BroadcastID     int                `json:"broadcast_id"`

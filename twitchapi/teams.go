@@ -5,10 +5,14 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
+// TeamsMethod wraps up team api calls
+// https://dev.twitch.tv/docs/v5/reference/teams/
 type TeamsMethod struct {
 	client *Client
 }
 
+// List returns a list of all the teams
+// https://dev.twitch.tv/docs/v5/reference/teams/#get-all-teams
 func (t *TeamsMethod) List(opt *twitch.ListOptions) (*twitch.TeamsList, error) {
 	rel := "teams"
 	if opt != nil {
@@ -24,6 +28,8 @@ func (t *TeamsMethod) List(opt *twitch.ListOptions) (*twitch.TeamsList, error) {
 	return teams, err
 }
 
+// Team returns the specified team
+// https://dev.twitch.tv/docs/v5/reference/teams/#get-team
 func (t *TeamsMethod) Team(name string) (*twitch.Team, error) {
 	rel := "teams/" + name
 

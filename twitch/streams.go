@@ -1,26 +1,29 @@
-// Streams methods of the twitch api.
-// https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md
-
 package twitch
 
 import "time"
 
-// used with GET /streams/:channel/
+// ChannelStream is the result when querying the current stream for a channel
+// https://dev.twitch.tv/docs/v5/reference/streams/#get-stream-by-channel
 type ChannelStream struct {
 	Stream *Stream `json:"stream,omitempty"`
 }
 
-// used with GET /streams
+// StreamsList is a list of streams
+// https://dev.twitch.tv/docs/v5/reference/streams/#get-all-streams
+// https://dev.twitch.tv/docs/v5/reference/streams/#get-followed-streams
 type StreamsList struct {
 	Total   int      `json:"_total,omitempty"`
 	Streams []Stream `json:"streams,omitempty"`
 }
 
-// used with GET /streams/featured
+// FeaturedStreamsList is a list of featured streams
+// https://dev.twitch.tv/docs/v5/reference/streams/#get-featured-streams
 type FeaturedStreamsList struct {
 	Featured []FeaturedStream `json:"featured,omitempty"`
 }
 
+// FeaturedStream is an entry of FeaturedStreamsList
+// https://dev.twitch.tv/docs/v5/reference/streams/#get-featured-streams
 type FeaturedStream struct {
 	Image     string `json:"image,omitempty"`
 	Priority  int    `json:"priority,omitempty"`
@@ -31,19 +34,15 @@ type FeaturedStream struct {
 	Title     string `json:"title,omitempty"`
 }
 
-// used with GET /streams/summary
+// StreamSummary is a summary of all the live streams on twitch
+// https://dev.twitch.tv/docs/v5/reference/streams/#get-streams-summary
 type StreamSummary struct {
 	Channels int `json:"channels,omitempty"`
 	Viewers  int `json:"viewers,omitempty"`
 }
 
-// used with GET /streams/followed
-type StreamFollowed struct {
-	Total   int      `json:"_total,omitempty"`
-	Streams []Stream `json:"streams,omitempty"`
-}
-
-// Stream oject
+// Stream is a structure representing a stream on twitch
+// https://dev.twitch.tv/docs/v5/reference/streams/
 type Stream struct {
 	ID          int          `json:"_id,omitempty"`
 	Game        string       `json:"game,omitempty"`

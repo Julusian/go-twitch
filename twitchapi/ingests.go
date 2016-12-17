@@ -2,10 +2,14 @@ package twitchapi
 
 import "git.julusian.co.uk/botofdork/twitch-api/twitch"
 
+// IngestsMethod wraps up ingest api calls
+// https://dev.twitch.tv/docs/v5/reference/ingests/
 type IngestsMethod struct {
 	client *Client
 }
 
+// List returns a list of available ingest servers
+// https://dev.twitch.tv/docs/v5/reference/ingests/#get-ingest-server-list
 func (i *IngestsMethod) List() (*twitch.IngestsList, error) {
 	rel := "ingests"
 

@@ -8,11 +8,15 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
+// VideosMethod wraps up video api calls
+// https://dev.twitch.tv/docs/v5/reference/videos/
 type VideosMethod struct {
 	client *Client
 }
 
-func (v *VideosMethod) Id(id uint) (*twitch.Video, error) {
+// ID returns information about the specified video
+// https://dev.twitch.tv/docs/v5/reference/videos/#get-video
+func (v *VideosMethod) ID(id uint) (*twitch.Video, error) {
 	rel := fmt.Sprintf("videos/%d", id)
 
 	video := new(twitch.Video)
@@ -20,6 +24,8 @@ func (v *VideosMethod) Id(id uint) (*twitch.Video, error) {
 	return video, err
 }
 
+// Top returns a list of the top viewed videos
+// https://dev.twitch.tv/docs/v5/reference/videos/#get-top-videos
 func (v *VideosMethod) Top(opt *twitch.ListOptions) (*twitch.TopVideosList, error) {
 	rel := "videos/top"
 	if opt != nil {
@@ -35,7 +41,9 @@ func (v *VideosMethod) Top(opt *twitch.ListOptions) (*twitch.TopVideosList, erro
 	return videos, err
 }
 
-func (v *VideosMethod) Followed(opt *twitch.ListOptions) (*twitch.ChannelVideosList, error) {
+// Followed returns a list of videos from channels the authenticated user is following
+// https://dev.twitch.tv/docs/v5/reference/videos/#get-followed-videos
+func (v *VideosMethod) Followed(opt *twitch.ListOptions) (*twitch.VideosList, error) {
 	rel := "videos/followed"
 	if opt != nil {
 		v, err := query.Values(opt)
@@ -45,7 +53,7 @@ func (v *VideosMethod) Followed(opt *twitch.ListOptions) (*twitch.ChannelVideosL
 		rel += "?" + v.Encode()
 	}
 
-	videos := new(twitch.ChannelVideosList)
+	videos := new(twitch.VideosList)
 	_, err := v.client.Get(rel, videos)
 	return videos, err
 }

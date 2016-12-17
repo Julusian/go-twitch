@@ -1,5 +1,6 @@
 package twitch
 
+// PreviewImage holds a set of images for different sizes/resolutions
 type PreviewImage struct {
 	Large    string `json:"large,omitempty"`
 	Medium   string `json:"medium,omitempty"`
