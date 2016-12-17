@@ -18,6 +18,7 @@ type Client struct {
 	OAuthToken string
 
 	// Twitch api methods
+	// TODO - ChannelFeed    // https://dev.twitch.tv/docs/v5/reference/channel-feed/
 	Channels *ChannelsMethod // https://dev.twitch.tv/docs/v5/reference/channels/
 	Chat     *ChatMethod     // https://dev.twitch.tv/docs/v5/reference/chat/
 	Games    *GamesMethod    // https://dev.twitch.tv/docs/v5/reference/games/

@@ -1,47 +1,74 @@
 package twitchapi
 
 import (
-	"net/http"
+	"os"
 	"testing"
+
+	"git.julusian.co.uk/botofdork/twitch-api/twitch"
 )
 
-func TestUsersUser(t *testing.T) {
+func TestUsersName(t *testing.T) {
+	tc := newTestClient(t)
 
-	tc := NewClient(&http.Client{})
-
-	_, err := tc.Users.User("test_user1")
-
+	_, err := tc.Users.Name(testUser)
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
 	}
+}
 
+func TestUsersUser(t *testing.T) {
+	tc := newTestClient(t)
+
+	_, err := tc.Users.User(testUserID)
+	if err != nil {
+		t.Errorf("error not nil: %+v", err)
+	}
+}
+
+func TestUsersSelf(t *testing.T) {
+	tc := newTestClient(t)
+	tc.OAuthToken = os.Getenv("ACCESSTOKEN")
+
+	_, err := tc.Users.User(0)
+	if err != nil {
+		t.Errorf("error not nil: %+v", err)
+	}
 }
 
 func TestUsersFollows(t *testing.T) {
+	tc := newTestClient(t)
 
-	tc := NewClient(&http.Client{})
-
-	opt := &ListOptions{
+	opt := &twitch.ListOptions{
 		Limit:  1,
 		Offset: 0,
 	}
 
-	_, err := tc.Users.Follows("test_user1", opt)
-
+	_, err := tc.Users.Follows(testUserID, opt)
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
 	}
-
 }
 
 func TestUsersFollow(t *testing.T) {
+	tc := newTestClient(t)
 
-	tc := NewClient(&http.Client{})
-
-	_, err := tc.Users.Follow("Roybot1911", "Dansgaming")
-
+	_, err := tc.Users.Follow(testChannel, testUserID)
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
 	}
+}
 
+func TestUsersBlocks(t *testing.T) {
+	tc := newTestClient(t)
+	tc.OAuthToken = os.Getenv("ACCESSTOKEN")
+
+	opt := &twitch.ListOptions{
+		Limit:  1,
+		Offset: 0,
+	}
+
+	_, err := tc.Users.Blocks(testChannel, opt)
+	if err != nil {
+		t.Errorf("error not nil: %+v", err)
+	}
 }

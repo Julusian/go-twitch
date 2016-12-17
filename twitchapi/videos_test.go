@@ -1,27 +1,25 @@
 package twitchapi
 
 import (
-	"net/http"
+	"os"
 	"testing"
+
+	"git.julusian.co.uk/botofdork/twitch-api/twitch"
 )
 
 func TestVideosId(t *testing.T) {
+	tc := newTestClient(t)
 
-	tc := NewClient(&http.Client{})
-
-	_, err := tc.Videos.Id("a328087483")
-
+	_, err := tc.Videos.ID(44383045)
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
 	}
-
 }
 
 func TestVideosTop(t *testing.T) {
+	tc := newTestClient(t)
 
-	tc := NewClient(&http.Client{})
-
-	opt := &ListOptions{
+	opt := &twitch.ListOptions{
 		Limit:  1,
 		Offset: 0,
 		Game:   "Diablo",
@@ -29,9 +27,22 @@ func TestVideosTop(t *testing.T) {
 	}
 
 	_, err := tc.Videos.Top(opt)
-
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
 	}
+}
 
+func TestVideosFollowed(t *testing.T) {
+	tc := newTestClient(t)
+	tc.OAuthToken = os.Getenv("ACCESSTOKEN")
+
+	opt := &twitch.ListOptions{
+		Limit:  1,
+		Offset: 0,
+	}
+
+	_, err := tc.Videos.Followed(opt)
+	if err != nil {
+		t.Errorf("error not nil: %+v", err)
+	}
 }

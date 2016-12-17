@@ -45,7 +45,7 @@ type UserSubscription struct {
 // https://dev.twitch.tv/docs/v5/reference/users/#get-user
 // https://dev.twitch.tv/docs/v5/reference/users/#get-user-by-id
 type User struct {
-	ID               int       `json:"_id,omitempty"`
+	ID               TwitchID  `json:"_id,omitempty"`
 	Bio              string    `json:"bio,omitempty"`
 	CreatedAt        time.Time `json:"created_at,omitempty"`
 	DisplayName      string    `json:"display_name,omitempty"`

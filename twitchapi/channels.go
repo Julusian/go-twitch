@@ -19,7 +19,7 @@ type ChannelsMethod struct {
 // https://dev.twitch.tv/docs/v5/reference/channels/#get-channel
 // https://dev.twitch.tv/docs/v5/reference/channels/#get-channel-by-id
 func (c *ChannelsMethod) Channel(id uint) (*twitch.Channel, error) {
-	rel := "channels" // get authenticated channel
+	rel := "channel" // get authenticated channel
 	if id > 0 {
 		rel = fmt.Sprintf("channels/%d", id)
 	}

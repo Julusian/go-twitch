@@ -1,17 +1,12 @@
 package twitchapi
 
-import (
-	"net/http"
-	"testing"
-)
+import "testing"
 
 func TestIngestsList(t *testing.T) {
-	tc := NewClient(&http.Client{})
+	tc := newTestClient(t)
 
 	_, err := tc.Ingests.List()
-
 	if err != nil {
-		t.Errorf("error not nil: ", err)
+		t.Errorf("error not nil: %s", err)
 	}
-
 }

@@ -1,33 +1,30 @@
 package twitchapi
 
 import (
-	"net/http"
 	"testing"
+
+	"git.julusian.co.uk/botofdork/twitch-api/twitch"
 )
 
-func TestTeamsTeam(t *testing.T) {
-	tc := NewClient(&http.Client{})
-
-	_, err := tc.Teams.Team("testteam")
-
-	if err != nil {
-		t.Errorf("error not nil: %+v", err)
-	}
-
-}
-
 func TestTeamsList(t *testing.T) {
-	tc := NewClient(&http.Client{})
+	tc := newTestClient(t)
 
-	opt := &ListOptions{
+	opt := &twitch.ListOptions{
 		Limit:  1,
 		Offset: 0,
 	}
 
 	_, err := tc.Teams.List(opt)
-
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
 	}
+}
 
+func TestTeamsTeam(t *testing.T) {
+	tc := newTestClient(t)
+
+	_, err := tc.Teams.Team("staff")
+	if err != nil {
+		t.Errorf("error not nil: %+v", err)
+	}
 }

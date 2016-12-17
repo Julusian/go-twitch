@@ -1,30 +1,30 @@
 package twitchapi
 
-import (
-	"net/http"
-	"testing"
-)
+import "testing"
 
-func TestChatChannel(t *testing.T) {
+func TestChatBadges(t *testing.T) {
+	tc := newTestClient(t)
 
-	tc := NewClient(&http.Client{})
-
-	_, err := tc.Chat.Channel("kraken_test_user")
-
+	_, err := tc.Chat.Badges(testChannel)
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
 	}
+}
 
+func TestChatEmoticonsBySet(t *testing.T) {
+	tc := newTestClient(t)
+
+	_, err := tc.Chat.EmoticonsBySet(19151)
+	if err != nil {
+		t.Errorf("error not nil: %+v", err)
+	}
 }
 
 func TestChatEmoticons(t *testing.T) {
-
-	tc := NewClient(&http.Client{})
+	tc := newTestClient(t)
 
 	_, err := tc.Chat.Emoticons()
-
 	if err != nil {
 		t.Errorf("error not nil: %+v", err)
 	}
-
 }

@@ -48,7 +48,7 @@ type Stream struct {
 	Game        string       `json:"game,omitempty"`
 	Viewers     int          `json:"viewers,omitempty"`
 	VideoHeight int          `json:"video_height,omitempty"`
-	AverageFPS  int          `json:"average_fps,omitempty"`
+	AverageFPS  float64      `json:"average_fps,omitempty"`
 	Delay       int          `json:"delay,omitempty"`
 	CreatedAt   time.Time    `json:"created_at,omitempty"`
 	IsPlaylist  bool         `json:"is_playlist,omitempty"`
