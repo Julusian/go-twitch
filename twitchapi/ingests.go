@@ -1,6 +1,6 @@
 package twitchapi
 
-import "git.julusian.co.uk/botofdork/twitch-api/twitch"
+import "github.com/julusian/go-twitch/twitch"
 
 // IngestsMethod wraps up ingest api calls
 // https://dev.twitch.tv/docs/v5/reference/ingests/

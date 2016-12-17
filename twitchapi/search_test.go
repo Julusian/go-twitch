@@ -3,7 +3,7 @@ package twitchapi
 import (
 	"testing"
 
-	"git.julusian.co.uk/botofdork/twitch-api/twitch"
+	"github.com/julusian/go-twitch/twitch"
 )
 
 func TestSearchChannels(t *testing.T) {

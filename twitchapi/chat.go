@@ -3,7 +3,7 @@ package twitchapi
 import (
 	"fmt"
 
-	"git.julusian.co.uk/botofdork/twitch-api/twitch"
+	"github.com/julusian/go-twitch/twitch"
 )
 
 // ChatMethod wraps up chat api calls

@@ -1,7 +1,7 @@
 package twitchapi
 
 import (
-	"git.julusian.co.uk/botofdork/twitch-api/twitch"
+	"github.com/julusian/go-twitch/twitch"
 	"github.com/google/go-querystring/query"
 )
 

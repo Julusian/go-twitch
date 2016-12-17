@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"git.julusian.co.uk/botofdork/twitch-api/twitch"
+	"github.com/julusian/go-twitch/twitch"
 )
 
 const testChannel = 92016198 // Botofdork
