@@ -30,6 +30,8 @@ type Client struct {
 	Teams    *TeamsMethod    // https://dev.twitch.tv/docs/v5/reference/teams/
 	Users    *UsersMethod    // https://dev.twitch.tv/docs/v5/reference/users/
 	Videos   *VideosMethod   // https://dev.twitch.tv/docs/v5/reference/videos/
+
+	Tmi *TmiMethod // Undocumented tmi api methods
 }
 
 // NewClient returns a new twitch client used to communicate with the API
@@ -58,6 +60,8 @@ func NewClient(httpClient *http.Client, clientID string) (*Client, error) {
 	c.Teams = &TeamsMethod{client: c}
 	c.Users = &UsersMethod{client: c}
 	c.Videos = &VideosMethod{client: c}
+
+	c.Tmi = &TmiMethod{client: c}
 
 	return c, nil
 }
