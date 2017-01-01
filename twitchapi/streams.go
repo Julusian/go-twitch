@@ -19,7 +19,7 @@ func (s *StreamsMethod) Channel(id uint) (*twitch.ChannelStream, error) {
 	rel := fmt.Sprintf("streams/%d", id)
 
 	stream := new(twitch.ChannelStream)
-	_, err := s.client.Get(rel, stream)
+	_, err := s.client.GetKraken(rel, stream)
 	return stream, err
 }
 
@@ -37,7 +37,7 @@ func (s *StreamsMethod) List(opt *twitch.ListOptions) (*twitch.StreamsList, erro
 	}
 
 	streams := new(twitch.StreamsList)
-	_, err := s.client.Get(rel, streams)
+	_, err := s.client.GetKraken(rel, streams)
 	return streams, err
 }
 
@@ -54,7 +54,7 @@ func (s *StreamsMethod) Followed(opt *twitch.ListOptions) (*twitch.StreamsList, 
 	}
 
 	followed := new(twitch.StreamsList)
-	_, err := s.client.Get(rel, followed)
+	_, err := s.client.GetKraken(rel, followed)
 	return followed, err
 }
 
@@ -71,7 +71,7 @@ func (s *StreamsMethod) Featured(opt *twitch.ListOptions) (*twitch.FeaturedStrea
 	}
 
 	featured := new(twitch.FeaturedStreamsList)
-	_, err := s.client.Get(rel, featured)
+	_, err := s.client.GetKraken(rel, featured)
 	return featured, err
 }
 
@@ -88,6 +88,6 @@ func (s *StreamsMethod) Summary(opt *twitch.ListOptions) (*twitch.StreamSummary,
 	}
 
 	summary := new(twitch.StreamSummary)
-	_, err := s.client.Get(rel, summary)
+	_, err := s.client.GetKraken(rel, summary)
 	return summary, err
 }

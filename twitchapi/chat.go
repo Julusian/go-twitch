@@ -18,7 +18,7 @@ func (c *ChatMethod) Badges(id uint) (*twitch.ChatBadges, error) {
 	rel := fmt.Sprintf("chat/%d/badges", id)
 
 	chatBadges := new(twitch.ChatBadges)
-	_, err := c.client.Get(rel, chatBadges)
+	_, err := c.client.GetKraken(rel, chatBadges)
 	return chatBadges, err
 }
 
@@ -31,7 +31,7 @@ func (c *ChatMethod) EmoticonsBySet(set uint) (*twitch.EmoticonSets, error) {
 	}
 
 	emoticons := new(twitch.EmoticonSets)
-	_, err := c.client.Get(rel, emoticons)
+	_, err := c.client.GetKraken(rel, emoticons)
 	return emoticons, err
 }
 
@@ -41,6 +41,6 @@ func (c *ChatMethod) Emoticons() (*twitch.EmoticonsList, error) {
 	rel := "chat/emoticons"
 
 	emoticons := new(twitch.EmoticonsList)
-	_, err := c.client.Get(rel, emoticons)
+	_, err := c.client.GetKraken(rel, emoticons)
 	return emoticons, err
 }

@@ -24,7 +24,7 @@ func (t *TeamsMethod) List(opt *twitch.ListOptions) (*twitch.TeamsList, error) {
 	}
 
 	teams := new(twitch.TeamsList)
-	_, err := t.client.Get(rel, teams)
+	_, err := t.client.GetKraken(rel, teams)
 	return teams, err
 }
 
@@ -34,6 +34,6 @@ func (t *TeamsMethod) Team(name string) (*twitch.Team, error) {
 	rel := "teams/" + name
 
 	team := new(twitch.Team)
-	_, err := t.client.Get(rel, team)
+	_, err := t.client.GetKraken(rel, team)
 	return team, err
 }

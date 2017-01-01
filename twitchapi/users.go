@@ -19,7 +19,7 @@ func (u *UsersMethod) Name(name string) (*twitch.UsersList, error) {
 	rel := fmt.Sprintf("users?login=%s", name)
 
 	usr := new(twitch.UsersList)
-	_, err := u.client.Get(rel, usr)
+	_, err := u.client.GetKraken(rel, usr)
 	return usr, err
 }
 
@@ -33,7 +33,7 @@ func (u *UsersMethod) User(id uint) (*twitch.User, error) {
 	}
 
 	usr := new(twitch.User)
-	_, err := u.client.Get(rel, usr)
+	_, err := u.client.GetKraken(rel, usr)
 	return usr, err
 }
 
@@ -46,7 +46,7 @@ func (u *UsersMethod) subscription(user uint, channel uint) (*twitch.UserSubscri
 	rel := fmt.Sprintf("users/%d/subscriptions/%d", user, channel)
 
 	follow := new(twitch.UserSubscription)
-	_, err := u.client.Get(rel, follow)
+	_, err := u.client.GetKraken(rel, follow)
 	return follow, err
 }
 
@@ -63,7 +63,7 @@ func (u *UsersMethod) Follows(id uint, opt *twitch.ListOptions) (*twitch.UserFol
 	}
 
 	follows := new(twitch.UserFollowsList)
-	_, err := u.client.Get(rel, follows)
+	_, err := u.client.GetKraken(rel, follows)
 	return follows, err
 }
 
@@ -73,7 +73,7 @@ func (u *UsersMethod) Follow(user uint, target uint) (*twitch.UserFollow, error)
 	rel := fmt.Sprintf("users/%d/follows/channels/%d", user, target)
 
 	follow := new(twitch.UserFollow)
-	_, err := u.client.Get(rel, follow)
+	_, err := u.client.GetKraken(rel, follow)
 	return follow, err
 }
 
@@ -93,7 +93,7 @@ func (u *UsersMethod) Blocks(id uint, opt *twitch.ListOptions) (*twitch.UserBloc
 	}
 
 	blocks := new(twitch.UserBlocksList)
-	_, err := u.client.Get(rel, blocks)
+	_, err := u.client.GetKraken(rel, blocks)
 	return blocks, err
 }
 

@@ -14,6 +14,6 @@ func (i *IngestsMethod) List() (*twitch.IngestsList, error) {
 	rel := "ingests"
 
 	ingests := new(twitch.IngestsList)
-	_, err := i.client.Get(rel, ingests)
+	_, err := i.client.GetKraken(rel, ingests)
 	return ingests, err
 }

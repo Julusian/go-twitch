@@ -28,7 +28,7 @@ func (s *SearchMethod) Channels(q string, opt *twitch.ListOptions) (*twitch.Chan
 	}
 
 	search := new(twitch.ChannelsSearch)
-	_, err := s.client.Get(rel, search)
+	_, err := s.client.GetKraken(rel, search)
 	return search, err
 }
 
@@ -45,7 +45,7 @@ func (s *SearchMethod) Streams(q string, opt *twitch.ListOptions) (*twitch.Strea
 	}
 
 	search := new(twitch.StreamsList)
-	_, err := s.client.Get(rel, search)
+	_, err := s.client.GetKraken(rel, search)
 	return search, err
 }
 
@@ -62,6 +62,6 @@ func (s *SearchMethod) Games(q string, opt *twitch.ListOptions) (*twitch.GamesSe
 	}
 
 	search := new(twitch.GamesSearch)
-	_, err := s.client.Get(rel, search)
+	_, err := s.client.GetKraken(rel, search)
 	return search, err
 }

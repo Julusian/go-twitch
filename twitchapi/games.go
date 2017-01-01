@@ -24,6 +24,6 @@ func (g *GamesMethod) Top(opt *twitch.ListOptions) (*twitch.TopGamesList, error)
 	}
 
 	games := new(twitch.TopGamesList)
-	_, err := g.client.Get(rel, games)
+	_, err := g.client.GetKraken(rel, games)
 	return games, err
 }

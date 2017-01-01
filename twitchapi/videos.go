@@ -20,7 +20,7 @@ func (v *VideosMethod) ID(id uint) (*twitch.Video, error) {
 	rel := fmt.Sprintf("videos/%d", id)
 
 	video := new(twitch.Video)
-	_, err := v.client.Get(rel, video)
+	_, err := v.client.GetKraken(rel, video)
 	return video, err
 }
 
@@ -37,7 +37,7 @@ func (v *VideosMethod) Top(opt *twitch.ListOptions) (*twitch.TopVideosList, erro
 	}
 
 	videos := new(twitch.TopVideosList)
-	_, err := v.client.Get(rel, videos)
+	_, err := v.client.GetKraken(rel, videos)
 	return videos, err
 }
 
@@ -54,6 +54,6 @@ func (v *VideosMethod) Followed(opt *twitch.ListOptions) (*twitch.VideosList, er
 	}
 
 	videos := new(twitch.VideosList)
-	_, err := v.client.Get(rel, videos)
+	_, err := v.client.GetKraken(rel, videos)
 	return videos, err
 }

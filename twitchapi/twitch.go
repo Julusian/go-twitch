@@ -8,14 +8,16 @@ import (
 )
 
 // The root url of the twitch api
-const rootURL = "https://api.twitch.tv/kraken/"
+const krakenRootURL = "https://api.twitch.tv/kraken/"
+const tmiRootURL = "https://tmi.twitch.tv/"
 
 // Client is a struct containing methods to query the twitch api
 type Client struct {
-	client     *http.Client
-	baseURL    *url.URL
-	clientID   string
-	OAuthToken string
+	client        *http.Client
+	krakenBaseURL *url.URL
+	tmiBaseURL    *url.URL
+	clientID      string
+	OAuthToken    string
 
 	// Twitch api methods
 	// TODO - ChannelFeed    // https://dev.twitch.tv/docs/v5/reference/channel-feed/
@@ -37,9 +39,16 @@ func NewClient(httpClient *http.Client, clientID string) (*Client, error) {
 		return nil, fmt.Errorf("ClientID is required to use the TwitchAPI")
 	}
 
-	baseURL, _ := url.Parse(rootURL)
+	krakenBaseURL, _ := url.Parse(krakenRootURL)
+	tmiBaseURL, _ := url.Parse(tmiRootURL)
 
-	c := &Client{client: httpClient, baseURL: baseURL, clientID: clientID}
+	c := &Client{
+		client:        httpClient,
+		clientID:      clientID,
+		krakenBaseURL: krakenBaseURL,
+		tmiBaseURL:    tmiBaseURL,
+	}
+
 	c.Channels = &ChannelsMethod{client: c}
 	c.Chat = &ChatMethod{client: c}
 	c.Games = &GamesMethod{client: c}
@@ -53,16 +62,24 @@ func NewClient(httpClient *http.Client, clientID string) (*Client, error) {
 	return c, nil
 }
 
+func (c *Client) GetKraken(path string, r interface{}) (*http.Response, error) {
+	return c.Get(c.krakenBaseURL, path, r)
+}
+
+func (c *Client) GetTMI(path string, r interface{}) (*http.Response, error) {
+	return c.Get(c.tmiBaseURL, path, r)
+}
+
 // Get issues an API get request and returns the API response. The response body is
 // decoded and stored in the value pointed by r.
-func (c *Client) Get(path string, r interface{}) (*http.Response, error) {
+func (c *Client) Get(baseURL *url.URL, path string, r interface{}) (*http.Response, error) {
 	// Try and parse url
 	rel, err := url.Parse(path)
 	if err != nil {
 		return nil, err
 	}
 
-	u := c.baseURL.ResolveReference(rel)
+	u := baseURL.ResolveReference(rel)
 
 	// Create request
 	req, err := http.NewRequest("GET", u.String(), nil)

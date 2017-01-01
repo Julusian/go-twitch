@@ -25,7 +25,7 @@ func (c *ChannelsMethod) Channel(id uint) (*twitch.Channel, error) {
 	}
 
 	channel := new(twitch.Channel)
-	_, err := c.client.Get(rel, channel)
+	_, err := c.client.GetKraken(rel, channel)
 	return channel, err
 }
 
@@ -37,7 +37,7 @@ func (c *ChannelsMethod) Editors(id uint) (*twitch.ChannelEditorsList, error) {
 	rel := fmt.Sprintf("channels/%d/editors", id)
 
 	editors := new(twitch.ChannelEditorsList)
-	_, err := c.client.Get(rel, editors)
+	_, err := c.client.GetKraken(rel, editors)
 	return editors, err
 }
 
@@ -54,7 +54,7 @@ func (c *ChannelsMethod) Follows(id uint, opt *twitch.ListOptions) (*twitch.Chan
 	}
 
 	follow := new(twitch.ChannelFollowsList)
-	_, err := c.client.Get(rel, follow)
+	_, err := c.client.GetKraken(rel, follow)
 	return follow, err
 }
 
@@ -73,7 +73,7 @@ func (c *ChannelsMethod) Subscriptions(id uint, opt *twitch.ListOptions) (*twitc
 	}
 
 	subs := new(twitch.ChannelSubscriptionsList)
-	_, err := c.client.Get(rel, subs)
+	_, err := c.client.GetKraken(rel, subs)
 	return subs, err
 }
 
@@ -84,7 +84,7 @@ func (c *ChannelsMethod) subscription(id uint, user uint) (*twitch.ChannelSubscr
 	rel := fmt.Sprintf("channels/%d/subscriptions/%d", id, user)
 
 	sub := new(twitch.ChannelSubscription)
-	_, err := c.client.Get(rel, sub)
+	_, err := c.client.GetKraken(rel, sub)
 	return sub, err
 }
 
@@ -101,7 +101,7 @@ func (c *ChannelsMethod) Videos(id uint, opt *twitch.ListOptions) (*twitch.Video
 	}
 
 	videos := new(twitch.VideosList)
-	_, err := c.client.Get(rel, videos)
+	_, err := c.client.GetKraken(rel, videos)
 	return videos, err
 }
 
