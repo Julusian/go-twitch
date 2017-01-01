@@ -12,6 +12,7 @@ type TmiHost struct {
 	HostID            uint64 `json:"host_id,omitempty"`
 	HostLogin         string `json:"host_login,omitempty"`
 	HostDisplayName   string `json:"host_display_name,omitempty"`
+	HostPartnered     bool   `json:"host_partnered,omitempty"`
 	TargetID          uint64 `json:"target_id,omitempty"`
 	TargetLogin       string `json:"target_login,omitempty"`
 	TargetDisplayName string `json:"target_display_name,omitempty"`
