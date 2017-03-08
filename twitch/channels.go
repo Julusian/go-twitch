@@ -43,7 +43,7 @@ type ChannelSubscription struct {
 // https://dev.twitch.tv/docs/v5/reference/channels/#get-channel
 // https://dev.twitch.tv/docs/v5/reference/channels/#get-channel-by-id
 type Channel struct {
-	ID                           int       `json:"_id,omitempty"`
+	ID                           TwitchID  `json:"_id,omitempty"`
 	BroadcasterLanguage          string    `json:"broadcaster_language,omitempty"`
 	CreatedAt                    time.Time `json:"created_at,omitempty"`
 	DisplayName                  string    `json:"display_name,omitempty"`

@@ -44,7 +44,7 @@ type StreamSummary struct {
 // Stream is a structure representing a stream on twitch
 // https://dev.twitch.tv/docs/v5/reference/streams/
 type Stream struct {
-	ID          int          `json:"_id,omitempty"`
+	ID          TwitchID     `json:"_id,omitempty"`
 	Game        string       `json:"game,omitempty"`
 	Viewers     int          `json:"viewers,omitempty"`
 	VideoHeight int          `json:"video_height,omitempty"`
