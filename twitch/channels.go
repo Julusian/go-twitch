@@ -34,9 +34,11 @@ type ChannelSubscriptionsList struct {
 // ChannelSubscription is an element of ChannelSubscriptionsList
 // https://dev.twitch.tv/docs/v5/reference/channels/#get-channel-subscribers
 type ChannelSubscription struct {
-	ID        string    `json:"_id,omitempty"`
-	CreatedAt time.Time `json:"created_at,omitempty"`
-	User      User      `json:"user,omitempty"`
+	ID          string    `json:"_id,omitempty"`
+	CreatedAt   time.Time `json:"created_at,omitempty"`
+	User        User      `json:"user,omitempty"`
+	SubPlan     string    `json:"sub_plan,omitempty"`
+	SubPlanName string    `json:"sub_plan_name,omitempty"`
 }
 
 // Channel is a structure representing a twitch channel
